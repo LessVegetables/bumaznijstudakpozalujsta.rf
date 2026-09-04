@@ -206,7 +206,7 @@ function buildModel() {
     const dash = n => '_'.repeat(n);
 
     // ── Шапка (оставлена как в исходном бланке) ──
-    items.push({ s: 'head', t: 'Ректору НГУ Д.В. Пышный' });
+    items.push({ s: 'head', t: 'Ректору НГУ Д.В. Пышному' });
 
     if (fioGen) {
         items.push({ s: 'head', t: 'обучающегося ' + fioGen });
