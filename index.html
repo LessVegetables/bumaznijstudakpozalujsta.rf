@@ -14,10 +14,7 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
 
-    <!-- TODO: подставить свой data-website-id, когда сайт будет заведён в umami
-    <script defer src="https://stat.gehrman.me/script.js"
-        data-website-id="ЗАМЕНИТЬ"></script>
-    -->
+    <script defer src="https://stat.gehrman.me/script.js" data-website-id="f7746422-4262-4f75-a01e-7ad13d08cd12"></script>
 </head>
 
 <body>
@@ -36,6 +33,15 @@
 
         <!-- Section 1: About -->
         <section class="fade-up d2">
+            <a class="btn btn-jump" href="#builder" data-umami-event="cta-form">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <polyline points="19 12 12 19 5 12" />
+                </svg>
+                Сразу к форме
+            </a>
+
             <p class="section-label">О чём этот сайт</p>
             <h2>С конца 2025&nbsp;года студенческий билет по&nbsp;умолчанию электронный&nbsp;&mdash; но&nbsp;бумажный
                 вуз обязан выдать по&nbsp;вашему заявлению.</h2>
@@ -60,7 +66,7 @@
         </section>
 
         <!-- Section 2: Builder -->
-        <section class="fade-up d3 doc-print-host">
+        <section class="fade-up d3 doc-print-host" id="builder">
             <p class="section-label">Составить заявление</p>
             <h2>Заполните форму&nbsp;&mdash; мы соберём документ</h2>
             <p>Заявление адресуется ректору НГУ <strong>Д.В.&nbsp;Пышному</strong>. Пустые необязательные поля
@@ -357,10 +363,12 @@
                     </button>
                     <div class="qa-answer">
                         <div class="qa-answer-inner">
-                            <p>Нет. Сайт полностью статический: и&nbsp;предпросмотр, и&nbsp;файл&nbsp;.docx собираются
-                                кодом прямо в&nbsp;вашем браузере. ФИО, адрес и&nbsp;телефон никуда
-                                не&nbsp;отправляются&nbsp;— у&nbsp;сайта просто нет сервера, который мог&nbsp;бы
-                                их&nbsp;принять.</p>
+                            <p>Того, что вы вписали в&nbsp;форму,&nbsp;— нет. Сайт статический: и&nbsp;предпросмотр,
+                                и&nbsp;файл&nbsp;.docx собираются кодом прямо в&nbsp;вашем браузере. ФИО, адрес
+                                и&nbsp;телефон никуда не&nbsp;уходят&nbsp;— у&nbsp;сайта просто нет сервера,
+                                который мог&nbsp;бы их&nbsp;принять.</p>
+                            <p>Считается только обезличенная статистика посещений. Сайт не использует cookies. 
+			    Содержимое полей формы в статистику не попадает.</p>
                             <p>Кнопка «PDF&nbsp;/ печать» открывает системный диалог печати вашего браузера&nbsp;—
                                 там выберите «Сохранить как&nbsp;PDF», если нужен файл, а&nbsp;не&nbsp;распечатка.</p>
                         </div>
@@ -371,16 +379,20 @@
         </section>
 
         <footer>
-            <p>Сайт не собирает данные и не отправляет заявления автоматически.<br>
-                Исходный код сайта: <a href="https://github.com/LessVegetables" target="_blank"
-                    rel="noopener">GitHub</a><br>
+            <p>Данные из формы не покидают ваш браузер. Сайт не отправляет заявления автоматически.<br>
+                Исходный код сайта: <a href="https://github.com/LessVegetables/bumaznijstudakpozalujsta.rf"
+                    target="_blank" rel="noopener" data-umami-event="footer-link"
+                    data-umami-event-to="github">GitHub</a><br>
                 Прочие ресурсы: <a
                     href="https://www.consultant.ru/document/cons_doc_LAW_140174/a633a162a4284433fbad3aa1662bdcd254b81d81/"
-                    target="_blank" rel="noopener">Статья 33 ФЗ-273</a>
+                    target="_blank" rel="noopener" data-umami-event="footer-link"
+                    data-umami-event-to="st-33">Статья 33 ФЗ-273</a>
                 &ensp;&middot;&ensp;
-                <a href="http://www.kremlin.ru/acts/bank/52825" target="_blank" rel="noopener">ФЗ №539-ФЗ</a>
+                <a href="http://www.kremlin.ru/acts/bank/52825" target="_blank" rel="noopener"
+                    data-umami-event="footer-link" data-umami-event-to="fz-539">ФЗ №539-ФЗ</a>
                 &ensp;&middot;&ensp;
-                <a href="https://www.nsu.ru" target="_blank" rel="noopener">nsu.ru</a>
+                <a href="https://www.nsu.ru" target="_blank" rel="noopener" data-umami-event="footer-link"
+                    data-umami-event-to="nsu">nsu.ru</a>
             </p>
         </footer>
 

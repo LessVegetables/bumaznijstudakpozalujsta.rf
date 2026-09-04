@@ -3,11 +3,31 @@
    Всё считается в браузере: ничего никуда не отправляется.
    ──────────────────────────────────────────────────────────── */
 
+/* ── Статистика ─────────────────────────────────────────────
+   Обезличенные события в umami: только имя кнопки и, для Q&A,
+   текст вопроса. Ничего из формы сюда не попадает.
+   Ссылки и кнопка «Сразу к форме» размечены прямо в HTML
+   через data-umami-event — их umami считает сам.
+   ──────────────────────────────────────────────────────────── */
+
+function track(event, data) {
+    if (!window.umami || typeof window.umami.track !== 'function') return;
+    try {
+        window.umami.track(event, data);
+    } catch (e) {
+        /* блокировщик рекламы или недоступный сервер не должны ломать сайт */
+    }
+}
+
 function toggleQa(btn) {
     const item = btn.closest('.qa-item');
     const isOpen = item.classList.contains('open');
     document.querySelectorAll('.qa-item.open').forEach(el => el.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
+    if (!isOpen) {
+        item.classList.add('open');
+        // считаем только раскрытие: схлопывание — это тот же клик, дублировать незачем
+        track('qa-open', { q: btn.textContent.trim() });
+    }
 }
 
 /* ── Склонение ФИО в родительный падеж ───────────────────────
@@ -479,11 +499,13 @@ function generateDoc() {
         hint.textContent = 'Без ФИО заявление не примут — заполните это поле.';
         hint.classList.add('error');
         document.getElementById('f-fio').focus();
+        track('generate-no-fio');
         return;
     }
 
     currentModel = buildModel();
     renderPreview(currentModel);
+    track('generate', { docs: radio('docs'), basis: radio('basis') });
 
     const out = document.getElementById('doc-output');
     out.classList.add('visible');
@@ -499,6 +521,7 @@ function fileName(ext) {
 
 function downloadDocx() {
     if (!currentModel) return;
+    track('download-docx', { docs: radio('docs') });
     const blob = buildDocx(currentModel);
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -512,11 +535,13 @@ function downloadDocx() {
 
 function printDoc() {
     if (!currentModel) return;
+    track('print-pdf', { docs: radio('docs') });
     window.print();
 }
 
 function copyDoc() {
     if (!currentModel) return;
+    track('copy-text');
     navigator.clipboard.writeText(docPlainText(currentModel)).then(() => {
         const fb = document.getElementById('copy-feedback');
         fb.classList.add('show');
