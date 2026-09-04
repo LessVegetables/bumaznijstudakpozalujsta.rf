@@ -593,6 +593,20 @@ footer a {
     text-underline-offset: 3px;
 }
 
+/* дисклеймер про непричастность НГУ — читается раньше остального подвала */
+.footer-disclaimer {
+    color: var(--text-secondary);
+    max-width: 54ch;
+    margin: 0 auto 22px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.footer-disclaimer strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
 /* ── Animations ──────────────────────── */
 @keyframes fadeUp {
     from {
