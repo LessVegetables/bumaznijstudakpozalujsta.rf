@@ -1,0 +1,86 @@
+name: Счётчик заявлений
+
+# Раз в час забирает из umami число событий «generate» и кладёт его
+# в count.json рядом с index.html. Файл коммитится, поэтому страница
+# тянет счётчик со своего же домена — блокировщики его не режут.
+#
+# Нужны секреты репозитория: UMAMI_USER, UMAMI_PASSWORD.
+
+on:
+  schedule:
+    # не в :00 — там очередь из чужих задач и запуск плывёт сильнее
+    - cron: '17 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: counter
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Забрать счётчик из umami
+        env:
+          UMAMI: https://stat.gehrman.me
+          WID: f7746422-4262-4f75-a01e-7ad13d08cd12
+          UMAMI_USER: ${{ secrets.UMAMI_USER }}
+          UMAMI_PASSWORD: ${{ secrets.UMAMI_PASSWORD }}
+        run: |
+          set -euo pipefail
+
+          TOKEN=$(curl -sS --fail-with-body -X POST "$UMAMI/api/auth/login" \
+            -H 'Content-Type: application/json' \
+            -d "$(jq -nc --arg u "$UMAMI_USER" --arg p "$UMAMI_PASSWORD" \
+                  '{username: $u, password: $p}')" \
+            | jq -r '.token // empty')
+
+          if [ -z "$TOKEN" ]; then
+            echo '::error::umami не отдал токен — проверьте секреты UMAMI_USER / UMAMI_PASSWORD'
+            exit 1
+          fi
+
+          NOW=$(( $(date +%s) * 1000 ))
+          COUNT=$(curl -sS --fail-with-body -H "Authorization: Bearer $TOKEN" \
+            "$UMAMI/api/websites/$WID/metrics?type=event&startAt=1577836800000&endAt=$NOW" \
+            | jq -r '[.[] | select(.x == "generate") | .y] | add // 0')
+
+          case "$COUNT" in
+            ''|*[!0-9]*)
+              echo "::error::вместо числа пришло '$COUNT' — проверьте ответ /metrics"
+              exit 1
+              ;;
+          esac
+
+          # счётчик за всё время монотонный: падение означает битый ответ
+          # (или включённое в umami удаление старых событий) — в обоих
+          # случаях лучше оставить прежнее число, чем откатить его назад
+          PREV=$(jq -r '.generate // 0' count.json 2>/dev/null || echo 0)
+          if [ "$COUNT" -lt "$PREV" ]; then
+            echo "::warning::umami вернул $COUNT, в count.json $PREV — файл не трогаю"
+            exit 0
+          fi
+
+          jq -n --argjson n "$COUNT" --arg t "$(date -u +%FT%TZ)" \
+            '{generate: $n, updated: $t}' > count.json
+          echo "generate = $COUNT"
+
+      - name: Закоммитить, если изменилось
+        run: |
+          set -euo pipefail
+
+          if git diff --quiet -- count.json; then
+            echo 'число не изменилось, коммит не нужен'
+            exit 0
+          fi
+
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add count.json
+          git commit -m "счётчик: $(jq -r .generate count.json)"
+          git push

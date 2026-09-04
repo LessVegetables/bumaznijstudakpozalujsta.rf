@@ -30,6 +30,47 @@ function toggleQa(btn) {
     }
 }
 
+/* ── Счётчик заявлений ──────────────────────────────────────
+   count.json обновляет GitHub Action: раз в час берёт из umami
+   число событий «generate» и коммитит файл в репозиторий.
+   Лежит на своём домене, поэтому блокировщики его не режут.
+   ──────────────────────────────────────────────────────────── */
+
+// ниже этого числа полоску не показываем: «3 заявления» отпугивает сильнее,
+// чем её отсутствие
+const COUNTER_MIN = 10;
+
+function plural(n, one, few, many) {
+    const d10 = n % 10, d100 = n % 100;
+    if (d10 === 1 && d100 !== 11) return one;
+    if (d10 >= 2 && d10 <= 4 && (d100 < 12 || d100 > 14)) return few;
+    return many;
+}
+
+async function loadCounter() {
+    const strip = document.getElementById('counter');
+    if (!strip) return;
+
+    try {
+        const res = await fetch('count.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+
+        const n = (await res.json()).generate;
+        if (!Number.isFinite(n) || n < COUNTER_MIN) return;
+
+        document.getElementById('counter-n').textContent = n.toLocaleString('ru-RU');
+        document.getElementById('counter-word').textContent =
+            plural(n, 'заявление', 'заявления', 'заявлений');
+
+        strip.hidden = false;
+        // класс вешаем только сейчас, иначе анимация проиграет вхолостую,
+        // пока полоска ещё скрыта
+        strip.classList.add('fade-up', 'd1');
+    } catch (e) {
+        /* нет файла, нет сети, открыто через file:// — просто без полоски */
+    }
+}
+
 /* ── Склонение ФИО в родительный падеж ───────────────────────
    Нужно для шапки: «обучающегося Иванова Ивана Ивановича».
    Правила покрывают подавляющее большинство русских ФИО;
@@ -559,6 +600,8 @@ function updateFioHint() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    loadCounter();
+
     const today = new Date();
     const iso = [
         today.getFullYear(),
