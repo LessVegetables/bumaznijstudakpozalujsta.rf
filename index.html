@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Бумажный студенческий билет — заявление на имя ректора НГУ</title>
+    <meta name="description"
+        content="Составьте заявление о выдаче студенческого билета и зачётной книжки на бумажном носителе (ч. 6 ст. 33 ФЗ-273). Готовый Word или PDF для печати." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Spectral:ital,wght@0,300;0,400;0,600;1,300&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- TODO: подставить свой data-website-id, когда сайт будет заведён в umami
+    <script defer src="https://stat.gehrman.me/script.js"
+        data-website-id="ЗАМЕНИТЬ"></script>
+    -->
+</head>
+
+<body>
+
+    <div class="counter-strip fade-up d1">
+        <p><strong>&thinsp;0</strong> заявлений составлено с помощью этого сайта</p>
+    </div>
+
+    <div class="container">
+
+        <header class="fade-up d2">
+            <p class="header-eyebrow">НГУ &middot; ФЗ-273, статья 33, часть 6</p>
+            <h1>Бумажный студенческий<br><em>по заявлению</em></h1>
+            <hr class="header-rule" />
+        </header>
+
+        <!-- Section 1: About -->
+        <section class="fade-up d2">
+            <p class="section-label">О чём этот сайт</p>
+            <h2>С конца 2025&nbsp;года студенческий билет по&nbsp;умолчанию электронный&nbsp;&mdash; но&nbsp;бумажный
+                вуз обязан выдать по&nbsp;вашему заявлению.</h2>
+            <p>Федеральный закон от&nbsp;29.12.2025 №539-ФЗ переписал статью&nbsp;33 закона «Об&nbsp;образовании». Теперь
+                сведения о&nbsp;студенческом билете студенты вузов получают в&nbsp;электронном виде&nbsp;&mdash;
+                в&nbsp;ЭИОС университета, на&nbsp;Госуслугах и&nbsp;через мессенджер. Но&nbsp;та&nbsp;же часть&nbsp;6
+                прямо сохраняет право получить документ на&nbsp;бумаге: для&nbsp;этого нужно подать заявление
+                в&nbsp;свой вуз.</p>
+            <p>Этот сайт заполняет за&nbsp;вас бланк заявления на&nbsp;имя ректора НГУ и&nbsp;отдаёт готовый файл:
+                Word&nbsp;(.docx) или PDF для&nbsp;печати. Ничего никуда не&nbsp;отправляется&nbsp;&mdash; всё
+                собирается прямо в&nbsp;вашем браузере.</p>
+
+            <div class="ordinance-card">
+                <p class="label">Часть 6 статьи 33 — дословно</p>
+                <blockquote>«Студенческий билет, зачетная книжка и иные документы, подтверждающие обучение,
+                    на бумажном носителе выдаются указанным категориям обучающихся по заявлению, подаваемому
+                    в организацию, в которой они получают образование, в порядке, установленном локальными
+                    нормативными актами этой организации.»</blockquote>
+                <p class="source">Федеральный закон от 29.12.2012 №273-ФЗ «Об образовании в Российской Федерации»,
+                    ст.&nbsp;33 ч.&nbsp;6 (в&nbsp;ред. Федерального закона от&nbsp;29.12.2025 №539-ФЗ)</p>
+            </div>
+        </section>
+
+        <!-- Section 2: Builder -->
+        <section class="fade-up d3 doc-print-host">
+            <p class="section-label">Составить заявление</p>
+            <h2>Заполните форму&nbsp;&mdash; мы соберём документ</h2>
+            <p>Заявление адресуется ректору НГУ <strong>Д.В.&nbsp;Пышному</strong>. Пустые необязательные поля
+                останутся в&nbsp;документе прочерками&nbsp;&mdash; их&nbsp;можно дописать от&nbsp;руки уже
+                на&nbsp;распечатке.</p>
+
+            <div class="builder-grid">
+
+                <div class="field-group">
+                    <label for="f-fio">Фамилия, имя и отчество <span class="req"><strong>(обязательно)</strong></span></label>
+                    <input type="text" id="f-fio" placeholder="Иванов Иван Иванович" autocomplete="name" />
+                    <p class="field-hint" id="fio-hint"></p>
+                </div>
+
+                <div class="field-group">
+                    <label for="f-faculty">Факультет / институт</label>
+                    <input type="text" id="f-faculty" placeholder="Факультет информационных технологий" />
+                </div>
+
+                <div class="two-col">
+                    <div class="field-group">
+                        <label for="f-course">Курс</label>
+                        <input type="text" id="f-course" inputmode="numeric" placeholder="2" />
+                    </div>
+                    <div class="field-group">
+                        <label for="f-group">Группа</label>
+                        <input type="text" id="f-group" placeholder="21201" />
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label>Основа обучения</label>
+                    <div class="pill-group">
+                        <label class="pill-option"><input type="radio" name="basis" value="budget"
+                                checked /><span>Бюджетная</span></label>
+                        <label class="pill-option"><input type="radio" name="basis"
+                                value="paid" /><span>Платная</span></label>
+                        <label class="pill-option"><input type="radio" name="basis"
+                                value="blank" /><span>Оставить прочерк</span></label>
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label for="f-address">Адрес регистрации или пребывания</label>
+                    <textarea id="f-address"
+                        placeholder="630090, г. Новосибирск, ул. Пирогова, д. 16, комн. 000"></textarea>
+                </div>
+
+                <div class="two-col">
+                    <div class="field-group">
+                        <label for="f-phone">Телефон</label>
+                        <input type="text" id="f-phone" inputmode="tel" placeholder="+7 999 000-00-00" />
+                    </div>
+                    <div class="field-group">
+                        <label for="f-email">Электронная почта</label>
+                        <input type="text" id="f-email" inputmode="email" placeholder="i.ivanov@g.nsu.ru" />
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <label>Что просите выдать</label>
+                    <div class="ask-group pill-group">
+                        <label class="pill-option"><input type="radio" name="docs" value="bilet"
+                                checked /><span>Студенческий билет</span></label>
+                        <label class="pill-option"><input type="radio" name="docs" value="zachetka" /><span>Зачётную
+                                книжку</span></label>
+                        <label class="pill-option"><input type="radio" name="docs" value="both" /><span>Студенческий
+                                билет и зачётную книжку</span></label>
+                    </div>
+                </div>
+
+                <div class="field-group half">
+                    <label for="f-date">Дата заявления</label>
+                    <input type="date" id="f-date" />
+                </div>
+
+            </div>
+
+            <button class="btn btn-primary" onclick="generateDoc()">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="8" y1="13" x2="16" y2="13" />
+                    <line x1="8" y1="17" x2="13" y2="17" />
+                </svg>
+                Составить заявление
+            </button>
+
+            <div class="doc-output" id="doc-output">
+
+                <div class="doc-actions">
+                    <button class="btn btn-mailto" onclick="downloadDocx()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        Скачать Word (.docx)
+                    </button>
+                    <button class="btn btn-mailto" onclick="printDoc()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 6 2 18 2 18 9" />
+                            <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2" />
+                            <rect x="6" y="14" width="12" height="8" />
+                        </svg>
+                        PDF / печать
+                    </button>
+                    <button class="btn btn-secondary" onclick="copyDoc()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                        </svg>
+                        Скопировать текст
+                    </button>
+                    <span class="copy-feedback" id="copy-feedback">&#10003;&nbsp;Скопировано</span>
+                </div>
+
+                <p class="doc-note">Проверьте документ перед печатью&nbsp;&mdash; особенно фамилию в&nbsp;родительном
+                    падеже: она склоняется автоматически и&nbsp;в&nbsp;редких фамилиях может ошибиться.</p>
+
+                <div class="doc-scroll">
+                    <div class="doc-stage" id="doc-stage">
+                        <div class="doc-sheet" id="doc-sheet"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Q&A -->
+        <section class="fade-up d4">
+            <p class="section-label">Вопросы и ответы</p>
+            <h2>Что нужно знать</h2>
+
+            <div class="qa-list">
+
+                <div class="qa-item">
+                    <button class="qa-question" onclick="toggleQa(this)">
+                        Мне действительно обязаны выдать бумажный билет?
+                        <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="qa-answer">
+                        <div class="qa-answer-inner">
+                            <p>Да. Часть&nbsp;6 статьи&nbsp;33 ФЗ-273 сформулирована как обязанность:
+                                документы на бумажном носителе <strong>«выдаются… по заявлению»</strong>. Это
+                                не&nbsp;право вуза решать, а&nbsp;порядок выдачи по&nbsp;обращению студента.</p>
+                            <p>Вуз при этом сам устанавливает <strong>порядок</strong> выдачи своими локальными
+                                нормативными актами: куда подавать заявление, в&nbsp;какой срок изготовят документ,
+                                где его забирать. Порядок&nbsp;— но&nbsp;не&nbsp;сам факт выдачи.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qa-item">
+                    <button class="qa-question" onclick="toggleQa(this)">
+                        Куда нести готовое заявление?
+                        <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="qa-answer">
+                        <div class="qa-answer-inner">
+                            <p>Заявление написано на&nbsp;имя ректора, но&nbsp;подаётся оно обычно через
+                                <strong>деканат или дирекцию вашего факультета/института</strong>, либо через
+                                общий отдел&nbsp;/ канцелярию НГУ.</p>
+                            <p>Распечатайте <strong>два экземпляра</strong>. На&nbsp;втором попросите поставить
+                                отметку о&nbsp;приёме (дату, подпись, входящий номер) и&nbsp;оставьте его себе&nbsp;—
+                                это ваше доказательство, что заявление подано.</p>
+                            <p>Если в&nbsp;вашем подразделении принимают заявления по&nbsp;корпоративной почте&nbsp;—
+                                можно отправить скан подписанного документа. Уточните это в&nbsp;деканате.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qa-item">
+                    <button class="qa-question" onclick="toggleQa(this)">
+                        Электронный студенческий теперь недействителен?
+                        <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="qa-answer">
+                        <div class="qa-answer-inner">
+                            <p>Наоборот: с&nbsp;конца 2025&nbsp;года электронная форма стала основной. Сведения
+                                о&nbsp;студенческом билете формируются в&nbsp;ЭИОС университета, в&nbsp;личном
+                                кабинете на&nbsp;Госуслугах и&nbsp;доступны через мессенджер.</p>
+                            <p>Бумажный билет никуда не&nbsp;делся и&nbsp;остаётся полноценным документом&nbsp;—
+                                просто теперь его выдают не&nbsp;автоматически, а&nbsp;по&nbsp;заявлению. Одно
+                                другому не&nbsp;мешает: можно пользоваться и&nbsp;тем, и&nbsp;другим.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qa-item">
+                    <button class="qa-question" onclick="toggleQa(this)">
+                        Зачем в шапке адрес, телефон и почта?
+                        <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="qa-answer">
+                        <div class="qa-answer-inner">
+                            <p>Это стандартные реквизиты письменного обращения: по&nbsp;ним вам сообщат, что документ
+                                готов, и&nbsp;направят ответ, если по&nbsp;заявлению будет принято какое-то решение.
+                                Без контактов заявление тоже примут, но&nbsp;отвечать будет некуда.</p>
+                            <p>Обязательное поле здесь одно&nbsp;— <strong>ФИО</strong>: без него заявление
+                                не&nbsp;идентифицирует заявителя. Остальное можно оставить пустым и&nbsp;дописать
+                                ручкой на&nbsp;распечатке.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qa-item">
+                    <button class="qa-question" onclick="toggleQa(this)">
+                        Что делать, если откажут или будут тянуть?
+                        <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="qa-answer">
+                        <div class="qa-answer-inner">
+                            <p>Сначала&nbsp;— спокойно и&nbsp;письменно. Попросите отказ <strong>в&nbsp;письменном
+                                    виде со&nbsp;ссылкой на&nbsp;норму</strong>, на&nbsp;основании которой отказывают.
+                                Часто на&nbsp;этом вопрос и&nbsp;решается: письменных оснований для отказа в&nbsp;законе
+                                нет.</p>
+                            <p>Если ответа нет, следующая ступень&nbsp;— обращение на&nbsp;имя ректора через
+                                канцелярию с&nbsp;отметкой о&nbsp;приёме, затем&nbsp;— в&nbsp;Рособрнадзор
+                                или в&nbsp;Минобрнауки России, в&nbsp;чьём ведении находится НГУ.</p>
+                            <p>Именно поэтому важен второй экземпляр с&nbsp;отметкой о&nbsp;приёме: он&nbsp;фиксирует
+                                дату, с&nbsp;которой пошёл срок.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qa-item">
+                    <button class="qa-question" onclick="toggleQa(this)">
+                        Почему заявление на имя ректора, а не декана?
+                        <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="qa-answer">
+                        <div class="qa-answer-inner">
+                            <p>Закон говорит о&nbsp;заявлении, подаваемом «в&nbsp;организацию, в&nbsp;которой они
+                                получают образование». Организация&nbsp;— это университет целиком, и&nbsp;его
+                                единоличный исполнительный орган&nbsp;— ректор
+                                <strong>Дмитрий Владимирович Пышный</strong>.</p>
+                            <p>Физически заявление всё равно уходит в&nbsp;деканат, но&nbsp;адресат в&nbsp;шапке
+                                делает его обращением к&nbsp;университету, а&nbsp;не&nbsp;просьбой
+                                к&nbsp;конкретному сотруднику.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qa-item">
+                    <button class="qa-question" onclick="toggleQa(this)">
+                        Я не из НГУ. Можно пользоваться?
+                        <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="qa-answer">
+                        <div class="qa-answer-inner">
+                            <p>Норма федеральная и&nbsp;работает во&nbsp;всех вузах страны, но&nbsp;шапка
+                                документа здесь заполнена под НГУ. Скачайте <strong>.docx</strong> и&nbsp;замените
+                                в&nbsp;первой строке адресата на&nbsp;ректора своего вуза&nbsp;— остальной текст
+                                менять не&nbsp;нужно.</p>
+                            <p>Исключение&nbsp;— военные и&nbsp;приравненные к&nbsp;ним вузы (ч.&nbsp;1 ст.&nbsp;81
+                                ФЗ-273): там по&nbsp;части&nbsp;8 той&nbsp;же статьи билет и&nbsp;зачётка
+                                и&nbsp;так выдаются на&nbsp;бумаге без всякого заявления.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="qa-item">
+                    <button class="qa-question" onclick="toggleQa(this)">
+                        Сайт собирает мои данные?
+                        <svg class="qa-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="qa-answer">
+                        <div class="qa-answer-inner">
+                            <p>Нет. Сайт полностью статический: и&nbsp;предпросмотр, и&nbsp;файл&nbsp;.docx собираются
+                                кодом прямо в&nbsp;вашем браузере. ФИО, адрес и&nbsp;телефон никуда
+                                не&nbsp;отправляются&nbsp;— у&nbsp;сайта просто нет сервера, который мог&nbsp;бы
+                                их&nbsp;принять.</p>
+                            <p>Кнопка «PDF&nbsp;/ печать» открывает системный диалог печати вашего браузера&nbsp;—
+                                там выберите «Сохранить как&nbsp;PDF», если нужен файл, а&nbsp;не&nbsp;распечатка.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer>
+            <p>Сайт не собирает данные и не отправляет заявления автоматически.<br>
+                Исходный код сайта: <a href="https://github.com/LessVegetables" target="_blank"
+                    rel="noopener">GitHub</a><br>
+                Прочие ресурсы: <a
+                    href="https://www.consultant.ru/document/cons_doc_LAW_140174/a633a162a4284433fbad3aa1662bdcd254b81d81/"
+                    target="_blank" rel="noopener">Статья 33 ФЗ-273</a>
+                &ensp;&middot;&ensp;
+                <a href="http://www.kremlin.ru/acts/bank/52825" target="_blank" rel="noopener">ФЗ №539-ФЗ</a>
+                &ensp;&middot;&ensp;
+                <a href="https://www.nsu.ru" target="_blank" rel="noopener">nsu.ru</a>
+            </p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
